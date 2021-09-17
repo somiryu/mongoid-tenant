@@ -12,7 +12,7 @@ module Mongoid
 
     included do
       store_in database: lambda {
-        Thread.current[:tenancy] || raise('No tenancy set!')
+        Thread.current[:tenancy] if Thread.current[:tenancy]
       }
 
       def tenancy
