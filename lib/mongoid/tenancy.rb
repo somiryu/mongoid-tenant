@@ -27,6 +27,10 @@ module Mongoid
           Thread.current[:tenancy] = nil
         end
 
+        define_singleton_method(:current_tenant) do
+          Thread.current[:tenancy]
+        end
+
         define_singleton_method(:with_tenants) do |&block|
           all.each do |t|
             t.tenancy!
